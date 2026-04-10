@@ -15,7 +15,7 @@ type HandlerFunc func(ctx context.Context, r *http.Request) Encoder
 type Logger func(ctx context.Context, msg string, args ...any)
 
 type App struct {
-  log     Logger
+	log     Logger
 	mux     *http.ServeMux
 	mw      []MidFunc
 	origins []string
@@ -24,7 +24,7 @@ type App struct {
 func New(log Logger, mw ...MidFunc) *App {
 	mux := http.NewServeMux()
 	return &App{
-    log: log,
+		log: log,
 		mux: mux,
 		mw:  mw,
 	}

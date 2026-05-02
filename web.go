@@ -30,6 +30,30 @@ func New(log Logger, mw ...MidFunc) *App {
 	}
 }
 
+func (a *App) Use(mw ...MidFunc) {
+	a.mw = append(a.mw, mw...)
+}
+
+func (a *App) Get(group string, path string, handlerFunc HandlerFunc, mw ...MidFunc) {
+	a.HandleFunc(http.MethodGet, group, path, handlerFunc, mw...)
+}
+
+func (a *App) Post(group string, path string, handlerFunc HandlerFunc, mw ...MidFunc) {
+	a.HandleFunc(http.MethodPost, group, path, handlerFunc, mw...)
+}
+
+func (a *App) Put(group string, path string, handlerFunc HandlerFunc, mw ...MidFunc) {
+	a.HandleFunc(http.MethodPut, group, path, handlerFunc, mw...)
+}
+
+func (a *App) Patch(group string, path string, handlerFunc HandlerFunc, mw ...MidFunc) {
+	a.HandleFunc(http.MethodPatch, group, path, handlerFunc, mw...)
+}
+
+func (a *App) Delete(group string, path string, handlerFunc HandlerFunc, mw ...MidFunc) {
+	a.HandleFunc(http.MethodDelete, group, path, handlerFunc, mw...)
+}
+
 func (a *App) Origins() []string {
 	return a.origins
 }

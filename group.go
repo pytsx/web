@@ -35,3 +35,13 @@ func (g *Group) Delete(path string, handlerFunc HandlerFunc, mw ...MidFunc) {
 func (g *Group) HandleFunc(method string, path string, handlerFunc HandlerFunc, mw ...MidFunc) {
 	g.app.HandleFunc(method, g.prefix, path, handlerFunc, mw...)
 }
+
+func (g *Group) SubGroup(prefix string) *Group {
+	if prefix == "" {
+		return g
+	}
+
+	finalpath := g.prefix + "/" + prefix
+
+	return NewGroup(g.app, finalpath)
+}

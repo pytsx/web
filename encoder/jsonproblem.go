@@ -4,17 +4,17 @@ import "encoding/json"
 
 var jsonProblemContentType = "application/problem+json"
 
-type JSONProblem[T any] struct {
+type jsonProblemEncoder[T any] struct {
 	data T
 }
 
-func NewJSONProblem[T any](data T) JSONProblem[T] {
-	return JSONProblem[T]{
+func NewJSONProblem[T any](data T) jsonProblemEncoder[T] {
+	return jsonProblemEncoder[T]{
 		data: data,
 	}
 }
 
-func (j JSONProblem[T]) Encode() ([]byte, string, error) {
+func (j jsonProblemEncoder[T]) Encode() ([]byte, string, error) {
 	data, err := json.Marshal(j.data)
 	return data, jsonProblemContentType, err
 }

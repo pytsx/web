@@ -4,17 +4,17 @@ import "encoding/json"
 
 var jsonContentType = "application/json"
 
-type JSON[T any] struct {
+type jsonEncoder[T any] struct {
 	data T
 }
 
-func NewJSON[T any](data T) JSON[T] {
-	return JSON[T]{
+func NewJSON[T any](data T) jsonEncoder[T] {
+	return jsonEncoder[T]{
 		data: data,
 	}
 }
 
-func (j JSON[T]) Encode() ([]byte, string, error) {
+func (j jsonEncoder[T]) Encode() ([]byte, string, error) {
 	data, err := json.Marshal(j.data)
 
 	return data, jsonContentType, err

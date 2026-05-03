@@ -64,7 +64,6 @@ func (a *App) EnableCORS(origins []string) {
 
 func (a *App) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if a.origins != nil {
-
 		requestOrigin := r.Header.Get("Origin")
 		for _, origin := range a.origins {
 			if origin == "*" || origin == requestOrigin {

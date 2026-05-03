@@ -62,26 +62,6 @@ func (a *App) Router(prefix string) *Router {
 	return newRouter(a, prefix)
 }
 
-func (a *App) Get(path string, handlerFunc HandlerFunc, mw ...MidFunc) *Route {
-	return a.HandleFunc(http.MethodGet, path, handlerFunc, mw...)
-}
-
-func (a *App) Post(path string, handlerFunc HandlerFunc, mw ...MidFunc) *Route {
-	return a.HandleFunc(http.MethodPost, path, handlerFunc, mw...)
-}
-
-func (a *App) Put(path string, handlerFunc HandlerFunc, mw ...MidFunc) *Route {
-	return a.HandleFunc(http.MethodPut, path, handlerFunc, mw...)
-}
-
-func (a *App) Patch(path string, handlerFunc HandlerFunc, mw ...MidFunc) *Route {
-	return a.HandleFunc(http.MethodPatch, path, handlerFunc, mw...)
-}
-
-func (a *App) Delete(path string, handlerFunc HandlerFunc, mw ...MidFunc) *Route {
-	return a.HandleFunc(http.MethodDelete, path, handlerFunc, mw...)
-}
-
 func (a *App) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if a.origins != nil {
 		
